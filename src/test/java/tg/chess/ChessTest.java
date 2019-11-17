@@ -70,6 +70,14 @@ public class ChessTest {
     }
 
     @Test
+    public void horseShouldGo2AndHalfPositionsIn8DirectionsIfPossibleFromNearBorder() {
+        final List<String> nextPositions = chess.findAllNextPositions(Chess.Piece.HORSE, "B3");
+
+        assertThat(nextPositions, hasSize(6));
+        assertThat(nextPositions, hasItems("A5", "C5", "D4", "D2", "A1", "C1"));
+    }
+
+    @Test
     public void rookCanMoveHorizontallyOrVertically() {
         final List<String> nextPositions = chess.findAllNextPositions(Chess.Piece.ROOK, "D5");
 
@@ -83,6 +91,14 @@ public class ChessTest {
 
         assertThat(nextPositions, hasSize(2));
         assertThat(nextPositions, hasItems("A8", "H1"));
+    }
+
+    @Test
+    public void rookCanMoveHorizontallyOrVerticallyFromNearBorder() {
+        final List<String> nextPositions = chess.findAllNextPositions(Chess.Piece.ROOK, "B2");
+
+        assertThat(nextPositions, hasSize(4));
+        assertThat(nextPositions, hasItems("A2", "B1", "B8", "H2"));
     }
 
     @Test

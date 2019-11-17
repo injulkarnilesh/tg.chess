@@ -103,7 +103,7 @@ public class Chess {
         }
 
         public Move then(final Move anotherMove) {
-            final Predicate<Position> andPredicate = (p) -> canMove.test(p) && anotherMove.canMove.test(p);
+            final Predicate<Position> andPredicate = (p) -> canMove.test(p) && anotherMove.canMove.test(move.apply(p));
             final Function<Position, Position> andMove = (p) -> anotherMove.move.apply(this.move.apply(p));
             return new Move(andPredicate, andMove);
         }
